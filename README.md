@@ -8,7 +8,7 @@ venv
 
     source .venv/bin/activate
 
-    pip install --upgade pip
+    pip install --upgrade pip
 
     Para gerar esse arquivo, uma possibilidade é, dentro do ambiente virtual, digitar o seguinte comando:
 
