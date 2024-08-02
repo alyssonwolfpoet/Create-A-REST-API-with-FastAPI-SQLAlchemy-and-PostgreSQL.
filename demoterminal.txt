@@ -1,0 +1,30 @@
+(.venv) alysson@ubuntu-Nitro-AN515-57:~/workspace/Create-A-REST-API-with-FastAPI-SQLAlchemy-and-PostgreSQL.$ python3
+Python 3.10.12 (main, Jul 29 2024, 16:56:48) [GCC 11.4.0] on linux
+Type "help", "copyright", "credits" or "license" for more information.
+>>> from models import Item
+>>> new_item=Item(
+... name = "Milk",
+... description = "Nice milk",
+... price = 2000,
+... on_offer=True)
+>>> new_item
+<models.Item object at 0x72867f4a8d30>
+>>> 
+
+
+>>> from models import Item
+>>> new_item=Item(
+... name = "Milk",
+... description = "Nice milk",
+... price = 2000,
+... on_offer=True)
+>>> new_item
+<Item name=Milk price=2000>
+>>> 
+
+
+>>> Item.__tablename__
+'items'
+>>> Item.__table__
+Table('items', MetaData(), Column('id', Integer(), table=<items>, primary_key=True, nullable=False), Column('name', String(length=255), table=<items>, nullable=False), Column('description', Text(), table=<items>), Column('price', Integer(), table=<items>, nullable=False), Column('on_offer', Boolean(), table=<items>, default=ScalarElementColumnDefault(False)), schema=None)
+>>> 
