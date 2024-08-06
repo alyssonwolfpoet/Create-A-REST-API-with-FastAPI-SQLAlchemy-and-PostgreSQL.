@@ -38,6 +38,12 @@ def create_an_item(item:Item):
         on_offer=item.on_offer
     )
 
+    db_item=db.query(models.Item).filter(models.Item.name==item.name).first()
+
+    if db_item is not None:
+        raise HTTPException(status_code=400,detail="Item already exists")
+
+
     db.add(new_item)
     db.commit()
 
