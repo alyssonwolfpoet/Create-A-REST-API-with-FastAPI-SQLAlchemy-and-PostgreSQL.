@@ -28,3 +28,11 @@ Type "help", "copyright", "credits" or "license" for more information.
 >>> Item.__table__
 Table('items', MetaData(), Column('id', Integer(), table=<items>, primary_key=True, nullable=False), Column('name', String(length=255), table=<items>, nullable=False), Column('description', Text(), table=<items>), Column('price', Integer(), table=<items>, nullable=False), Column('on_offer', Boolean(), table=<items>, default=ScalarElementColumnDefault(False)), schema=None)
 >>> 
+
+{
+    "id":1,
+    "name" : "Milk",
+    "description" :"Nice milk",
+    "price" :2000,
+    "on_offer": true
+}

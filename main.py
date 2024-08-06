@@ -1,4 +1,4 @@
-from fastapi import FastAPI
+from fastapi import FastAPI,status,HTTPException
 from pydantic import BaseModel
 from typing import Optional,List
 from database import SessionLocal
@@ -27,9 +27,21 @@ def get_all_items():
 def get_an_item(item_id:int):
     pass
 
-@app.post("/items")
-def create_an_item():
-    pass
+@app.post("/items",response_model=Item,
+          status_code=status.HTTP_201_CREATED)
+def create_an_item(item:Item):
+
+    new_item = models.Item(
+        name=item.name,
+        price=item.price,
+        description=item.description,
+        on_offer=item.on_offer
+    )
+
+    db.add(new_item)
+    db.commit()
+
+    return new_item
 
 @app.put("/item/{item_id}")
 def update_an_item(item_id:int):
