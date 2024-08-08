@@ -33,18 +33,17 @@ def get_an_item(item_id:int):
           status_code=status.HTTP_201_CREATED)
 def create_an_item(item:Item):
 
+    db_item=db.query(models.Item).filter(models.Item.name==item.name).first()
+
+    if db_item is not None:
+        raise HTTPException(status_code=400,detail="Item already exists")
+
     new_item = models.Item(
         name=item.name,
         price=item.price,
         description=item.description,
         on_offer=item.on_offer
     )
-
-    db_item=db.query(models.Item).filter(models.Item.name==item.name).first()
-
-    if db_item is not None:
-        raise HTTPException(status_code=400,detail="Item already exists")
-
 
     db.add(new_item)
     db.commit()
@@ -63,10 +62,11 @@ def update_an_item(item_id:int,item:Item):
 
     return item_to_update
 
-@app.delete("item/{item_id}")
+@app.delete("/item/{item_id}")
 def delete_item(item_id:int):
-    item_to_delete=db.query(models.Item).filter(models.Item.id==item_id).first()
 
+    item_to_delete=db.query(models.Item).filter(models.Item.id==item_id).first()
+    
     if item_to_delete is None:
         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND,detail="Resource Not Found")
     
